@@ -14,7 +14,7 @@ const icons = {
 }
 let tasklist = [];
 
-const entrada = document.querySelector(".entrada");
+const entrada = document.querySelector(".txt-task");
 const taskUlList = document.querySelector(".task-list");
 
 
@@ -35,13 +35,14 @@ const runLess = ({classN, idN}) => {
 const runDelete = ({classN, idN}) => {
     tasklist = tasklist.filter(({id, taskname}) => id !== Number(idN));
     document.querySelector(`#lis-${idN}`).remove();
-    if(tasklist.length < 1) printTask({id:0, taskname:'NO HAY DATOS'});
+    if(tasklist.length < 1) showHideZeroTask();
 };
 
 
 taskUlList.addEventListener('click', e => {
     if (e.target.parentNode && e.target.parentNode.id) 
     {
+        console.log(e.target);
         const data = {classN: e.target.parentElement.id.slice(0, 4), idN:e.target.parentElement.id.slice(5)};
         switch (data.classN) 
         {
@@ -52,8 +53,7 @@ taskUlList.addEventListener('click', e => {
     }
 });
 
-const gettask = ({id,task}) => id==0? `<span class="text-task" id="txt-${id}">${task}</span>`:(`
-
+const gettask = ({id,task}) => (`
     <span class="text-task" id="txt-${id}">${task}</span>
     <span class="img" id="imgl-${id}">
         <span class="esc"></span>
@@ -71,15 +71,19 @@ const gettask = ({id,task}) => id==0? `<span class="text-task" id="txt-${id}">${
 
 const printTask = ({id, taskname})=>{
     const el = document.createElement("li");
-        el.className = "list-group-item" + ((id === 0 && tasklist.length<1)?' bg-dark text-white': '');
+        el.className = "task-list-item" + ((id === 0 && tasklist.length<1)?' bg-dark text-white': '');
         el.id = `lis-${id}`
         el.innerHTML = gettask({id: id, task: taskname});
         taskUlList.appendChild(el);
 };
 
+const showHideZeroTask = () =>
+{
+    if(tasklist.length) document.querySelector(".task-zero").style.display = 'none';
+    else document.querySelector(".task-zero").style.display = 'flex';
+}
 
 const saveTask = task => {
-        if(tasklist.length<1)taskUlList.innerHTML = "";
         tasklist.push({ id: ++currentid, taskname: task });
         printTask({id: currentid, taskname: task});
 };
@@ -89,10 +93,11 @@ const saveTask = task => {
 document.querySelector(".btn-task").addEventListener('click', e => {
     e.preventDefault();
     if (entrada.value && entrada.value.replaceAll(" ", "")) saveTask(entrada.value);
+    showHideZeroTask();
     entrada.value = "";
 })
 
 
 document.addEventListener('DOMContentLoaded', ()=>{
-    return (tasklist.forEach((data)=>printTask(data)) ,printTask({id:0,taskname:'NO EXISTEN DATOS'}));
+    return (tasklist.forEach((data)=>printTask(data)) ,showHideZeroTask());
 });

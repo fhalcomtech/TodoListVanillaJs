@@ -48,15 +48,17 @@ h1, h2, h3, h4, h5, h6
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
-
-.formulario
+.form-task
 {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+
 
 .btn-task, .txt-task
 {
@@ -103,32 +105,38 @@ h1, h2, h3, h4, h5, h6
     margin-top: 2rem;
     width: 90%;
     display: flex;
+    flex-direction: column;
+    
+
+}
+
+.task-list li
+{
+    
+    background-color: var(--dark-sky-blue);
+    height: 3rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.task-zero
+{   
+    color: var(--alice-blue);
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.task-list-item .text-task
+{
+    justify-self: flex-start;
+    flex: 7;
+    padding-left: 1rem;
+    color: var(--alice-blue);
 }
 
 
-.task-list li {
-
-  width: 100%;
-}
-
-.task-list li span {
-  flex: 9;
-}
-
-.task-list li .img {
-  display: block;
-  position: relative;
-  flex: 1;
-}
-
-.task-list li .img .esc {
-  display: block;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  z-index: 999;
-}
-
-.task-list li [id^="imgl"] {
-  display: none;
+.task-list-item .img
+{
+    padding-right: 1rem;
 }
