@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+:root
+{
+    --onyx: hsla(0, 0%, 25%, 1);
+    --indigo-dye: hsla(207, 73%, 23%, 1);
+    --sapphire-blue: hsla(206, 63%, 36%, 1);
+    --dark-sky-blue: hsla(191, 41%, 67%, 1);
+    --alice-blue: hsla(195, 50%, 97%, 1);
+    --rb: 'Roboto', sans-serif;
+    --ub: 'Ubuntu', sans-serif;
+
+}
+
+*, *::before, *::after
+{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0%;
+    font-family: var(--rb);
+}
+
+
+
+.container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 200px;
+    height: 100vh;
+    background-color: var(--alice-blue);
+}
+
+
+h1, h2, h3, h4, h5, h6
+{
+    font-family: var(--ub);
+    color: var(--alice-blue);
+}
+
+
+.container h1
+{
+    
+    height: 5rem;
+    background-color: var(--indigo-dye);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.formulario
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-task, .txt-task
+{
+    width: 90%;
+    margin-top:1rem;
+    font-weight: 400;
+    font-size: 1.05rem;
+
+    height: 3rem;
+    border-width: 0;
+    border-radius: 0.5rem;
+   
+}
+
+.txt-task
+{
+    background-color: var(--onyx);
+    color: var(--alice-blue);
+    padding-left: 1rem;
+    box-shadow: 3px 5px 5px -8px var(--indigo-dye);
+}
+
+
+.btn-task
+{
+    background-color: var(--sapphire-blue);
+    color: var(--alice-blue);
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+
+.task-list-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+}
+
+.task-list
+{
+    list-style: none;
+    margin-top: 2rem;
+    width: 90%;
+    display: flex;
+}
+
+
+.task-list li {
+
+  width: 100%;
+}
+
+.task-list li span {
+  flex: 9;
+}
+
+.task-list li .img {
+  display: block;
+  position: relative;
+  flex: 1;
+}
+
+.task-list li .img .esc {
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 999;
+}
+
+.task-list li [id^="imgl"] {
+  display: none;
+}
