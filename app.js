@@ -42,7 +42,6 @@ const runDelete = ({classN, idN}) => {
 taskUlList.addEventListener('click', e => {
     if (e.target.parentNode && e.target.parentNode.id) 
     {
-        console.log(e.target);
         const data = {classN: e.target.parentElement.id.slice(0, 4), idN:e.target.parentElement.id.slice(5)};
         switch (data.classN) 
         {
@@ -89,13 +88,21 @@ const saveTask = task => {
 };
 
 
-
-document.querySelector(".btn-task").addEventListener('click', e => {
+const saveNewTaskFromClick = e => {
     e.preventDefault();
     if (entrada.value && entrada.value.replaceAll(" ", "")) saveTask(entrada.value);
     showHideZeroTask();
     entrada.value = "";
-})
+}
+
+document.querySelector(".btn-task").addEventListener('click', saveNewTaskFromClick);
+entrada.addEventListener('keypress', e=>{
+    
+    if(e.key.toUpperCase() === 'ENTER') {
+        e.preventDefault();
+        saveNewTaskFromClick(e);
+    }
+});
 
 
 document.addEventListener('DOMContentLoaded', ()=>{
